@@ -1,0 +1,10 @@
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/TamirSa1/stock-shop.git
+git push -u origin master
+
+בכל שינוי בפרויקט לכתוב את השורות הבאות ואז להעלות מחדש
+git add .
+git commit -m {"the change you did"}
+git push
