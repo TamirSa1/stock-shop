@@ -1,7 +1,6 @@
 import {productRouter} from "./products/route.js"
 import {signUpRouter} from "./signUp/route.js"
 import {loginRouter} from "./login/route.js"
-// import {searchProductsRouter} from "./searchProducts/route.js"
 import express from "express"
 import cors from "cors"
 
@@ -13,7 +12,6 @@ const app = express();
 app.use(express.json()); // עוזר לקרוא את הבאדי של הפוסט רקווסט
 app.use(cors())
 app.use("/products", productRouter)
-// app.use("/searchProducts", searchProductsRouter)
 app.use("/signup", signUpRouter)
 app.use("/login", loginRouter)
 

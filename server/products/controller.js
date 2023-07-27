@@ -1,12 +1,13 @@
-import { pool } from "../database/db.js"
+import { conncetToMongo } from "../database/connectToMongoDB.js"
+
 
 async function getAllProducts(request, response) {
-    try {
-        const result = await pool.query("select * from products")
-        response.send(result[0])
-    } catch (error) {
-        response.status(400).send(error)
-    }
+    const dbConnection = await conncetToMongo();
+    const db = dbConnection.db
+    const productsCollection = await db.collection("products");
+    const products = await productsCollection.find({}).toArray();
+    response.send(products);
+
 }
 
 export { getAllProducts }

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductComponent from './productComponent';
 
-const searchProducts = "https://localhost:4000/searchProducts";
+const searchProducts = "http://localhost:4000/products";
 
 export default function ProductsWithSearch() {
     const [prodArray, setProdArray] = useState([]); // first array
@@ -35,11 +35,11 @@ export default function ProductsWithSearch() {
     return (
         <div>
             <h1>All our products</h1>
-            <input placeholder="search product" value={valueSearch} onChange={(e)=>setValueSearch(e.target.value)}></input>
+            <input placeholder="search product" value={valueSearch} onChange={(e) => setValueSearch(e.target.value)}></input>
             <button onClick={searchProduct}>click</button>
             {filteretAfterSearch.map((oneProduct) => {
-                return(
-                    <ProductComponent key={oneProduct.ProductID} forProps={oneProduct}></ProductComponent>
+                return (
+                  <ProductComponent key={oneProduct._id} element={oneProduct}></ProductComponent>
                 )
             })}
         </div>
