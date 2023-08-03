@@ -19,6 +19,7 @@ async function insertToCart(request, response) {
     } else {
         await cartCollection.insertOne(cartObject)
     }
+    response.send("success")
 }
 
 async function cartByUserID(request, response) {
