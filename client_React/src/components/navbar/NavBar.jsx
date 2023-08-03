@@ -14,6 +14,7 @@ function NavBar() {
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/products">Products</Nav.Link>
                         <Nav.Link href="/searchProducts">Products By Search</Nav.Link>
+                        <Nav.Link href="/cart">Cart</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>        </div>

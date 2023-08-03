@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Login from "./components/login/Login"
 import SignUp from "./components/signup/SignUp"
 import Products from './components/products/products'
+import Cart from './components/cart/Cart'
 import ProductsWithSearch from './components/productsWithSearch/productsWithSearch'
 import NavBar from './components/navbar/NavBar'
 import './App.css'
@@ -27,6 +28,11 @@ const routes = [
     path: "/products",
     component: <Products></Products>,
     key: "products"
+  },
+  {
+    path: "/cart",
+    component: <Cart></Cart>,
+    key: "cart"
   }
 ]
 

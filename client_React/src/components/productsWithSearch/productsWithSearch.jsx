@@ -43,7 +43,7 @@ export default function ProductsWithSearch() {
 
     return (
         <div className="allProductsDiv">
-            <h1>All our products</h1>
+            <h1>All products</h1>
             {loadingProducts ? <Spinner animation="border" /> :
                 <div>
                     <InputGroup className="mb-3">

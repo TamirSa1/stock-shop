@@ -1,0 +1,42 @@
+Two Options:
+1.
+
+    _id : objectId
+userId : users < objectId
+products : [
+    {
+        productId : products < objectId ,
+        quantity : number
+    },
+      {
+        productId : products < objectId ,
+        quantity : number
+    },
+      {
+        productId : products < objectId ,
+        quantity : number
+    }
+]
+
+2.
+
+_id : objectId
+userId : users < objectId
+productId : products < objectId ,
+quantity : number
+   
+ _id : objectId
+userId : users < objectId
+productId : products < objectId ,
+quantity : number
+
+_id : objectId
+userId : users < objectId
+productId : products < objectId ,
+quantity : number
+
+HW:
+להחליט 1 או 2
+לעבור על החומר
+לקרוא על הוצאת נתונים ממונגו דיבי
+להוסיף אלרט/פופאפ אחרי לחיצה על הקארט

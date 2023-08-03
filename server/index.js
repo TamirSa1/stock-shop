@@ -1,6 +1,7 @@
 import {productRouter} from "./products/route.js"
 import {signUpRouter} from "./signUp/route.js"
 import {loginRouter} from "./login/route.js"
+import {cartRouter} from "./cart/route.js"
 import express from "express"
 import cors from "cors"
 
@@ -14,6 +15,7 @@ app.use(cors())
 app.use("/products", productRouter)
 app.use("/signup", signUpRouter)
 app.use("/login", loginRouter)
+app.use("/cart", cartRouter)
 
 app.use(express.static("../client_React/dist"))
 
