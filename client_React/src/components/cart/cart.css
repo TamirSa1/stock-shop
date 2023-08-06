@@ -145,7 +145,7 @@ select {
     color: transparent;
 }
 
-.btn {
+.btn1 {
     background-color: #000;
     border-color: #000;
     color: white;
@@ -156,7 +156,7 @@ select {
     border-radius: 0;
 }
 
-.btn:focus {
+.btn1:focus {
     box-shadow: none;
     outline: none;
     box-shadow: none;
@@ -166,7 +166,7 @@ select {
     transition: none;
 }
 
-.btn:hover {
+.btn1:hover {
     color: white;
 }
 

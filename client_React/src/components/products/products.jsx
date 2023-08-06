@@ -24,7 +24,7 @@ function Products() {
         } catch (error) {
             console.log(error);
         }
-        finally{
+        finally {
             setLoadingProducts(false)
         }
     }
@@ -33,40 +33,41 @@ function Products() {
         console.log(prodArray)
     }, [])
 
+
     return (
         <div>
             <h1>Products</h1>
-            {loadingProducts ? <Spinner animation="border"/> : 
-            <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>brand</th>
-                        <th>category</th>
-                        <th>rating</th>
-                        <th>price</th>
-                        <th>title</th>
-                        <th>description</th>
-                        <th>image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {prodArray.map((product) => {
-                        return (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.brand}</td>
-                            <td>{product.category}</td>
-                            <td>{product.rating}</td>
-                            <td>{product.price}</td>
-                            <td>{product.title}</td>
-                            <td>{product.description}</td>
-                            <td><img src={product.images[0]} alt={product.title} /></td>
+            {loadingProducts ? <Spinner animation="border" /> :
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>brand</th>
+                            <th>category</th>
+                            <th>rating</th>
+                            <th>price</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>image</th>
                         </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {prodArray.map((product) => {
+                            return (
+                                <tr key={product.id}>
+                                    <td>{product.id}</td>
+                                    <td>{product.brand}</td>
+                                    <td>{product.category}</td>
+                                    <td>{product.rating}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.title}</td>
+                                    <td>{product.description}</td>
+                                    <td><img src={product.images[0]} alt={product.title} /></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             }
         </div>
     )

@@ -99,7 +99,7 @@ export default function Cart() {
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">{calculatePrice}$</div>
                     </div>
-                    <button className="btn" onClick={() => handlePay()}>PAYMENT</button>
+                    <button className="btn1" onClick={() => handlePay()}>PAYMENT</button>
                 </div>
             </div>
         </div>

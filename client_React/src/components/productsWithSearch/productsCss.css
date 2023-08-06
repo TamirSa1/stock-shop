@@ -1,13 +1,13 @@
 #allCards {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-evenly;
-align-items: stretch;
-gap: 20px;
-margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    gap: 20px;
+    margin: 20px;
 }
 
-.imageCard{
+.imageCard {
     height: 200px;
     width: fit-content;
     max-width: 295px;
@@ -15,36 +15,72 @@ margin: 20px;
     margin: auto;
 }
 
-.cardBtn{
+.cardBtn {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 150px;
 }
 
-.allProductsDiv{
- text-align: center;   
+.allProductsDiv {
+    text-align: center;
 }
 
-.input-group{
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-        width: 450px;
-        margin: auto;
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 450px;
+    margin: auto;
 }
 
-#button-addon2{
+#button-addon2 {
     z-index: 0;
 }
 
-.popup{
+.popup {
     background-color: #e4eeee;
-    width: 70%;
+    width: 800px;
     margin: auto;
     margin-top: 200px;
-    height: 300px;
     display: flex;
     padding: 5px;
+    position: relative;
+}
+
+.bi-x-circle{
+position: absolute;
+top: 0px;
+right: 0px;
+width: 50px;
+height: 50px;
+color: red;
+}
+
+.bi-x-circle:hover{
+cursor: pointer;
+}
+
+.cardBodyPopUpDiv {
+    display: flex;
+    padding-left: 20px;
+}
+
+p {
+    margin: 5px;
+}
+
+.addToCartPopupBtn{
+    height: 30px;
+    width: 240px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.closePopupBtn{
+    height: 30px;
+    width: 240px;
+    display: flex;
+    flex-direction: row-reverse;
 }
