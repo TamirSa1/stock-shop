@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import "./cart.css"
 import { useSelector, useDispatch } from 'react-redux';
-import {removeCloseSpan} from "../../slices/cart.js";
+import { removeCloseSpan } from "../../slices/cart.js";
 // import AddIcon from '@mui/icons-material/Add';
 // import RemoveIcon from '@mui/icons-material/Remove';
 
@@ -29,8 +29,14 @@ export default function Cart() {
         if (priceNumber > 0) setCalculatePrice(priceNumber + shippingPrice)
     }, [cartArray])
 
-    function removeSpan(element) {
-        dispatch(removeCloseSpan(element))
+    async function removeSpan(element) {
+        try {
+            const result = await axios.delete(`http://localhost:4000/cart/${element._id}`);
+            console.log(result.data);
+            dispatch(removeCloseSpan(element))
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -72,7 +78,7 @@ export default function Cart() {
                                         {/* <h6>size: {item.size}</h6> */}
                                     </div>
                                     <span onClick={() => removeSpan(cart)} // (cart) = element from removeSpan() function (the element i want to remove)
-                                     className="close">&#10005;</span>
+                                        className="close">&#10005;</span>
                                 </div>
                             </div>
                         )

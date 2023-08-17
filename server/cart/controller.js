@@ -42,10 +42,17 @@ async function cartByUserID(request, response) {
             }
         }
     ];
-
     let cartArray = await cartCollection.aggregate(pipeline).toArray();
     response.send(cartArray);
 }
 
+async function deleteFromCart(request, response){
+    const objectIdToRemove = request.params.cartId; //כדי להעביר את האובייקט מהעגלה צריך להעביר את המוצר האמצעות האי.די שלו שמועברת דרך הפאראמס שעובר דרך הראטור
+    const dbConnection = await conncetToMongo();
+    const db = dbConnection.db
+    const cartCollection = await db.collection("cart");
+    await cartCollection.deleteOne({_id: new ObjectId(objectIdToRemove)});
+    response.send("Item deleted from cart");
+}
 
-export { insertToCart , cartByUserID}
+export { insertToCart , cartByUserID, deleteFromCart}

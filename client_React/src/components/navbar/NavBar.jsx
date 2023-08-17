@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {newCartArray} from "../../slices/cart.js";
+import { newCartArray } from "../../slices/cart.js";
 import axios from "axios"
 
 function NavBar() {
@@ -14,13 +14,17 @@ function NavBar() {
     async function getCartArray() {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-            const result = await axios.post("http://localhost:4000/cart/getCart", {
-                userId: user._id
-            })
-            console.log(result.data);
-            if (Array.isArray(result.data)) {
-                // setCartArray(result.data)
-                dispatch(newCartArray(result.data)); // dispatch + (function name ( === action payload in cart.js file))
+            try {
+                const result = await axios.post("http://localhost:4000/cart/getCart", {
+                    userId: user._id
+                })
+                console.log(result.data);
+                if (Array.isArray(result.data)) {
+                    // setCartArray(result.data)
+                    dispatch(newCartArray(result.data)); // dispatch + (function name ( === action payload in cart.js file))
+                }
+            } catch (error) {
+                console.log("error");
             }
         }
     }
