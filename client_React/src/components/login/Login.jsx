@@ -43,6 +43,7 @@ function Login() {
   }
 
   return (
+  <div>
     <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
       <h1>Login</h1>
 
@@ -61,7 +62,8 @@ function Login() {
       </div>
 
     </MDBContainer>
-
+    
+    </div>
   )
 }
 

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Login from "./components/login/Login"
 import SignUp from "./components/signup/SignUp"
 import Products from './components/products/products'

@@ -15,8 +15,7 @@ function Products() {
 
     async function getProd() {
         try {
-            const result = await axios.get(url, {
-            })
+            const result = await axios.get(url)
             console.log(result.data);
             if (Array.isArray(result.data)) {
                 setProdArray(result.data)

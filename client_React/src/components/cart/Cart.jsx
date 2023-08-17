@@ -1,30 +1,19 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
 import "./cart.css"
+import { useSelector, useDispatch } from 'react-redux';
 // import AddIcon from '@mui/icons-material/Add';
 // import RemoveIcon from '@mui/icons-material/Remove';
 
 const shippingPrice = 5;
 
 export default function Cart() {
-    const [cartArray, setCartArray] = useState([])
+    // const [cartArray, setCartArray] = useState([])
+    const cartArray = useSelector((state) => state.cartStore.cartArray) // שם משתנה חדש כמו שאני רוצה עדיף כמו בסטייט קיים אם יש
+    // אחרי הסטייט נקודה להביא את שם המשתנה מהסטור ולאחר מכן את שם המשתנה מהקובץ של הסלייס
     const [cartItems, setCartItems] = useState(0)
     const [calculatePrice, setCalculatePrice] = useState(0)
-
-    async function getCartArray() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const result = await axios.post("http://localhost:4000/cart/getCart", {
-            userId: user._id
-        })
-        console.log(result.data);
-        if (Array.isArray(result.data)) {
-            setCartArray(result.data)
-        }
-
-    }
-    useEffect(() => {
-        getCartArray()
-    }, [])
+    const [cupon, setCupon] = useState("")
 
     useEffect(() => {
         let quantityNumber = 0;
@@ -35,7 +24,7 @@ export default function Cart() {
             priceNumber += element.productData[0].price
         }
         setCartItems(quantityNumber)
-        if(priceNumber > 0) setCalculatePrice(priceNumber+shippingPrice)
+        if (priceNumber > 0) setCalculatePrice(priceNumber + shippingPrice)
     }, [cartArray])
 
     return (
@@ -86,14 +75,14 @@ export default function Cart() {
                     <div><h5><b>Summary</b></h5></div>
                     <hr />
                     {/* <div className="row"> */}
-                        {/* <div className="col" style={{ paddingeft: 0 }}>{cartItems}</div> */}
-                        {/* <div className="col text-right">{calculatePrice}$</div> */}
+                    {/* <div className="col" style={{ paddingeft: 0 }}>{cartItems}</div> */}
+                    {/* <div className="col text-right">{calculatePrice}$</div> */}
                     {/* </div> */}
                     <form>
                         <p>SHIPPING</p>
                         <select><option className="text-muted">Standard-Delivery- 5.00$</option></select>
                         <p>GIVE CODE</p>
-                        <input className="inputCode" id="code" placeholder="Enter your code" />
+                        <input className="inputCode" id="code" placeholder="Enter your code" value={cupon} onChange={(e) => setCupon(e.target.value)} />
                     </form>
                     <div className="row" style={{ borderTop: "1px solid rgba(0,0,0,.1)", padding: "2vh 0" }}>
                         <div className="col">TOTAL PRICE</div>
