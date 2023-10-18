@@ -21,10 +21,39 @@ export const cartArraySlice = createSlice({ // שורה שצריך להעתיק 
             // action.payload --> האלמנט שאני רוצה למחוק 
             // פילטר - מוציא מהמערך את האלמנט ששווה ומשאיר את האלמנט ששונה לכן לרוב בפילטר יהיה שונה מ
             state.cartArray = [...ArrayAfterRemoveElemntInCart]  // דרך שעובדת בריאקט להשוות בין מערכים 
+        },
+        increaseItemCount: (state, action) => {
+            let newArray = state.cartArray.map((cartItem) => { // יצירת מערך חדש ואז מאפ שמשנה את המערך הנוכחי
+                if (cartItem._id === action.payload._id) {
+                    return {
+                        ...cartItem, // מחזיר כל אחד ואחד במערך
+                        quantity: cartItem.quantity + 1 // מגדיל את הכמות באחד
+                    }
+                }
+                else {
+                    return cartItem // ואם אין שינוי הוא מחזיר את המערך כמו שהוא
+                }
+            })
+            state.cartArray = [...newArray]
+        },
+        lowerItemCount: (state, action) => {
+            let newArray = state.cartArray.map((cartItem) => { // יצירת מערך חדש ואז מאפ שמשנה את המערך הנוכחי
+                if (cartItem._id === action.payload._id) {
+                    return {
+                        ...cartItem, // מחזיר כל אחד ואחד במערך
+                        quantity: cartItem.quantity - 1 // מחסיר את הכמות באחד
+                        
+                    }
+                }
+                else {
+                    return cartItem // ואם אין שינוי הוא מחזיר את המערך כמו שהוא
+                }
+            })
+            state.cartArray = [...newArray]
         }
     }
 });
 
-export const { increase, newCartArray, addCartItem , removeCloseSpan} = cartArraySlice.actions; //  שורה קבועה למעט השמות של הפונקציות בתוך הסוגריים ושם המשתנה לפני הנקודה.אקשיונס
+export const { increase, newCartArray, addCartItem, removeCloseSpan, increaseItemCount, lowerItemCount } = cartArraySlice.actions; //  שורה קבועה למעט השמות של הפונקציות בתוך הסוגריים ושם המשתנה לפני הנקודה.אקשיונס
 
 export default cartArraySlice.reducer; // שורה קבועה למעט שם המשתנה

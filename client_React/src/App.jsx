@@ -1,8 +1,8 @@
 import Login from "./components/login/Login"
 import SignUp from "./components/signup/SignUp"
-import Products from './components/products/products'
+import AllProducts from './components/allProducts/AllProducts'
 import Cart from './components/cart/Cart'
-import ProductsWithSearch from './components/productsWithSearch/productsWithSearch'
+import Products from './components/products/Products'
 import NavBar from './components/navbar/NavBar'
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -19,14 +19,14 @@ const routes = [
     key: "signUp"
   },
   {
-    path: "/searchProducts",
-    component: <ProductsWithSearch></ProductsWithSearch>,
-    key: "searchProducts"
-  },
-  {
     path: "/products",
     component: <Products></Products>,
     key: "products"
+  },
+  {
+    path: "/allProducts",
+    component: <AllProducts></AllProducts>,
+    key: "allProducts"
   },
   {
     path: "/cart",

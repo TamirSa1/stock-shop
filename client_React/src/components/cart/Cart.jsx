@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import "./cart.css"
 import { useSelector, useDispatch } from 'react-redux';
-import { removeCloseSpan } from "../../slices/cart.js";
+import { increaseItemCount, lowerItemCount, removeCloseSpan } from "../../slices/cart.js";
 // import AddIcon from '@mui/icons-material/Add';
 // import RemoveIcon from '@mui/icons-material/Remove';
 
@@ -23,7 +23,7 @@ export default function Cart() {
         for (let index = 0; index < cartArray.length; index++) {
             const element = cartArray[index];
             quantityNumber += element.quantity
-            priceNumber += element.productData[0].price
+            priceNumber += element.productData[0].price * element.quantity
         }
         setCartItems(quantityNumber)
         if (priceNumber > 0) setCalculatePrice(priceNumber + shippingPrice)
@@ -36,6 +36,18 @@ export default function Cart() {
             dispatch(removeCloseSpan(element))
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async function increaseItem(element) { 
+        dispatch(increaseItemCount(element))
+    }
+
+    async function lowerItem(element) { 
+        if (element.quantity === 0) {
+            removeSpan(element)
+        } else {
+            dispatch(lowerItemCount(element))
         }
     }
 
@@ -55,27 +67,23 @@ export default function Cart() {
                                 <div className="row main align-items-center">
                                     <div className="col-2"><img className="img-fluid" src={cart.productData[0].images[0]} alt="clothImg" /></div>
                                     <div className="col">
-                                        {/* <div className="row text-muted">{item.cloth.sector}</div> */}
                                         <div className="row">{cart.productData[0].title}</div>
                                     </div>
                                     <div className="col quantity">
 
                                         <ul className="ul">
-                                            <li className="qty-opt left disabled">
-                                                {/* <AddIcon ></AddIcon> */}
+                                            <li onClick={() => increaseItem(cart)} className="qty-opt left" role="button"> 
                                                 +
                                             </li>
                                             <li className="middle">
                                                 <input className="inputQuantity" type="number" value={cart.quantity} />
                                             </li>
-                                            <li role="button" className="qty-opt right">
-                                                {/* <RemoveIcon ></RemoveIcon> */}
+                                            <li onClick={() => lowerItem(cart)} role="button" className="qty-opt right">
                                                 -
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="col" style={{ marginTop: "10px" }}>{cart.productData[0].price} $
-                                        {/* <h6>size: {item.size}</h6> */}
+                                    <div className="col" style={{ marginTop: "10px" }}>{cart.productData[0].price * cart.quantity} $
                                     </div>
                                     <span onClick={() => removeSpan(cart)} // (cart) = element from removeSpan() function (the element i want to remove)
                                         className="close">&#10005;</span>
