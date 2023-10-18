@@ -10,9 +10,8 @@ async function createUser(request, response) {
     console.log(request.body);
     const userDetails = request.body
     try {
-        const result = await pool.query(`INSERT INTO users(name , email , phone , password) VALUES('${userDetails.name}','${userDetails.email}','${userDetails.phone}','${userDetails.password}')`)
-        console.log(result)
-        response.send("ok")
+        await pool.query(`INSERT INTO users(name , email , phone , password) VALUES('${userDetails.name}','${userDetails.email}','${userDetails.phone}','${userDetails.password}')`)
+        response.send({success : true})
     } catch (error) {
         console.log(error)
         response.status(400).send(error)
@@ -33,6 +32,7 @@ async function createUserToMongoDB(request, response) {
             userDetails.password = hash;
             // userDetails.salt = salt; // saltשמירה של ה
             await usersCollection.insertOne(userDetails)
+            response.send({success : true})
         });
     });
    

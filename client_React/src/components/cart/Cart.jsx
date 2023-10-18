@@ -39,11 +39,22 @@ export default function Cart() {
         }
     }
 
-    async function increaseItem(element) { 
-        dispatch(increaseItemCount(element))
+    async function increaseItem(element) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(element)
+        try {
+            const result = await axios.post("http://localhost:4000/cart",{
+                userId: user._id,
+                productId: element.productId
+            });
+            console.log(result.data);
+            dispatch(increaseItemCount(element));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    async function lowerItem(element) { 
+    async function lowerItem(element) {
         if (element.quantity === 0) {
             removeSpan(element)
         } else {
@@ -72,7 +83,7 @@ export default function Cart() {
                                     <div className="col quantity">
 
                                         <ul className="ul">
-                                            <li onClick={() => increaseItem(cart)} className="qty-opt left" role="button"> 
+                                            <li onClick={() => increaseItem(cart)} className="qty-opt left" role="button">
                                                 +
                                             </li>
                                             <li className="middle">

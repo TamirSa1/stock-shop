@@ -35,7 +35,7 @@ function Login() {
           localStorage.setItem('user', JSON.stringify(result.data));
         }
         // window.location.href = "/searchProducts"; // מעבר למוצרים אופציה א
-        navigate("/searchProducts") // אופציה ב למעבר למוצרים - יתרון לא מרענן את הדף שימוש של ריאקט
+        navigate("/products") // אופציה ב למעבר למוצרים - יתרון לא מרענן את הדף שימוש של ריאקט
       }
     } catch (error) {
       console.log(error);

@@ -66,7 +66,7 @@ function SignUp() {
 
     async function signupToServer(signUpObject) {
         try {
-            const result = await axios.post("http://localhost:4000/signup", signUpObject)
+            await axios.post("http://localhost:4000/signup", signUpObject)
             navigate("/login")
         } catch (error) {
             console.log(error);
