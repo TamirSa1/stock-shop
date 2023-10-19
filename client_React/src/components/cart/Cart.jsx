@@ -31,7 +31,7 @@ export default function Cart() {
 
     async function removeSpan(element) {
         try {
-            const result = await axios.delete(`http://localhost:4000/cart/${element._id}`);
+            const result = await axios.delete(`/api/cart/${element._id}`);
             console.log(result.data);
             dispatch(removeCloseSpan(element))
         } catch (error) {
@@ -43,7 +43,7 @@ export default function Cart() {
         const user = JSON.parse(localStorage.getItem('user'));
         console.log(element)
         try {
-            const result = await axios.post("http://localhost:4000/cart", {
+            const result = await axios.post("/api/cart", {
                 userId: user._id,
                 productId: element.productId
             });
@@ -57,7 +57,7 @@ export default function Cart() {
     async function declineCart(element) {
         const user = JSON.parse(localStorage.getItem('user'));
         try {
-            const result = await axios.put("http://localhost:4000/cart", {
+            const result = await axios.put("/api/cart", {
                 userId: user._id,
                 productId: element.productId
             });

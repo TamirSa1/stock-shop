@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 
-const url = "http://localhost:4000/products";
+const url = "/api/products";
 
 function AllProducts() {
     const [prodArray, setProdArray] = useState([])

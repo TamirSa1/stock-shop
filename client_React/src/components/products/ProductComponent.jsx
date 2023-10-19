@@ -30,7 +30,7 @@ export default function productComponent(props) {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             try {
-                const result = await axios.post("http://localhost:4000/cart", {
+                const result = await axios.post("/api/cart", {
                     userId: user._id,
                     productId: props.element._id,
                     quantity: 1

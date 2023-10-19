@@ -24,7 +24,7 @@ function Login() {
       password: mailPassword
     }
     try {
-      const result = await axios.post("http://localhost:4000/login", loginObject)
+      const result = await axios.post("/api/login", loginObject)
       console.log(result.data);
       if (result.data === "Couldn't find user") {
         alert("Couldn't find user")

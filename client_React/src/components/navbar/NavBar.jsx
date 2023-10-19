@@ -15,7 +15,7 @@ function NavBar() {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             try {
-                const result = await axios.post("http://localhost:4000/cart/getCart", {
+                const result = await axios.post("/api/cart/getCart", {
                     userId: user._id
                 })
                 console.log(result.data);

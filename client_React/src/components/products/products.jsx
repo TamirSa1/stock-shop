@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ProductComponent from './productComponent';
+import ProductComponent from './ProductComponent';
 import './productsCss.css';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const searchProducts = "http://localhost:4000/products";
+const searchProducts = "/api/products";
 
 export default function Products() {
     const [prodArray, setProdArray] = useState([]); // first array
