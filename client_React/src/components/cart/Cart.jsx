@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import "./cart.css"
 import { useSelector, useDispatch } from 'react-redux';
 import { increaseItemCount, lowerItemCount, removeCloseSpan } from "../../slices/cart.js";
-// import AddIcon from '@mui/icons-material/Add';
-// import RemoveIcon from '@mui/icons-material/Remove';
 
 const shippingPrice = 5;
 
@@ -20,12 +18,14 @@ export default function Cart() {
     useEffect(() => {
         let quantityNumber = 0;
         let priceNumber = 0;
+        console.log(cartArray)
         for (let index = 0; index < cartArray.length; index++) {
             const element = cartArray[index];
             quantityNumber += element.quantity
             priceNumber += element.productData[0].price * element.quantity
         }
         setCartItems(quantityNumber)
+        if (priceNumber == 0) setCalculatePrice(0)
         if (priceNumber > 0) setCalculatePrice(priceNumber + shippingPrice)
     }, [cartArray])
 
@@ -43,7 +43,7 @@ export default function Cart() {
         const user = JSON.parse(localStorage.getItem('user'));
         console.log(element)
         try {
-            const result = await axios.post("http://localhost:4000/cart",{
+            const result = await axios.post("http://localhost:4000/cart", {
                 userId: user._id,
                 productId: element.productId
             });
@@ -54,11 +54,25 @@ export default function Cart() {
         }
     }
 
+    async function declineCart(element) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        try {
+            const result = await axios.put("http://localhost:4000/cart", {
+                userId: user._id,
+                productId: element.productId
+            });
+            console.log(result.data);
+            dispatch(lowerItemCount(element))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async function lowerItem(element) {
         if (element.quantity === 0) {
             removeSpan(element)
         } else {
-            dispatch(lowerItemCount(element))
+            declineCart(element)
         }
     }
 
@@ -113,7 +127,7 @@ export default function Cart() {
                     <form>
                         <p>SHIPPING</p>
                         <select><option className="text-muted">Standard-Delivery- 5.00$</option></select>
-                        <p>GIVE CODE</p>
+                        <p>COUPON CODE</p>
                         <input className="inputCode" id="code" placeholder="Enter your code" value={cupon} onChange={(e) => setCupon(e.target.value)} />
                     </form>
                     <div className="row" style={{ borderTop: "1px solid rgba(0,0,0,.1)", padding: "2vh 0" }}>

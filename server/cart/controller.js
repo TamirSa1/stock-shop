@@ -1,7 +1,6 @@
 import { ObjectId } from "mongodb";
 import { conncetToMongo } from "../database/connectToMongoDB.js";
 
-
 async function insertToCart(request, response) {
     console.log(request.body);
     const cartProduct = request.body;
@@ -20,6 +19,19 @@ async function insertToCart(request, response) {
         await cartCollection.insertOne(cartObject)
     }
     response.send("success")
+}
+
+async function declineCart(request, response) {
+    console.log(request.body);
+    const cartProduct = request.body;
+    const dbConnection = await conncetToMongo();
+    const db = dbConnection.db
+    const cartCollection = await db.collection("cart");
+    let cart = await cartCollection.findOne({ userId: new ObjectId(cartProduct.userId), productId: new ObjectId(cartProduct.productId) })
+    if (cart) {
+        await cartCollection.updateOne(cart, { $set: { quantity: cart.quantity - 1 } })
+    }
+    response.send("success");
 }
 
 async function cartByUserID(request, response) {
@@ -55,4 +67,4 @@ async function deleteFromCart(request, response){
     response.send("Item deleted from cart");
 }
 
-export { insertToCart , cartByUserID, deleteFromCart}
+export { insertToCart , cartByUserID, deleteFromCart, declineCart}
